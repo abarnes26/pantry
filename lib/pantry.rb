@@ -2,11 +2,13 @@ require 'pry'
 
 class Pantry
   attr_reader :stock,
-              :shopping_list
+              :shopping_list,
+              :cookbook
 
   def initialize
     @stock = Hash.new(0)  #need 0 here to start ingredients with initial value
     @shopping_list = Hash.new(0)
+    @cookbook = []
   end
 
   def stock_check(ingredient)
@@ -39,5 +41,8 @@ class Pantry
     result
   end
 
+  def add_to_cookbook(recipe)
+   cookbook << recipe
+  end
 
 end
