@@ -118,6 +118,18 @@ class PantryTest < Minitest::Test
     assert_equal 3, results.length
   end
 
+  def test_the_cookbook_can_compare_to_stock
+    pantry = Pantry.new
+    r1 = Recipe.new("Cheese Pizza")
+    r1.add_ingredient("Cheese", 20)
+    r1.add_ingredient("Flour", 20)
+    pantry.add_to_cookbook(r1)
+    pantry.restock("Cheese", 20)
+    pantry.restock("Flour", 20)
+
+    assert pantry.has_ingredients_for_recipe(pantry.cookbook[0])
+  end
+
   def test_the_pantry_can_recommend_recipes_from_the_cookbook
     pantry = Pantry.new
     r1 = Recipe.new("Cheese Pizza")
@@ -141,6 +153,7 @@ class PantryTest < Minitest::Test
     expected = ["Pickles", "Peanuts"]
     results = pantry.what_can_i_make
 
+    assert 6, pantry.stock.length
     assert_equal expected, results
   end
 
