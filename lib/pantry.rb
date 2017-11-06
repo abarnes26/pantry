@@ -6,7 +6,7 @@ class Pantry
 
   def initialize
     @stock = Hash.new(0)  #need 0 here to start ingredients with initial value
-    @shopping_list = {}
+    @shopping_list = Hash.new(0)
   end
 
   def stock_check(ingredient)
@@ -19,7 +19,7 @@ class Pantry
 
   def add_to_shopping_list(recipe)
     recipe.ingredients.each do |ingredient, amount|
-      shopping_list["#{ingredient}"] = amount
+      shopping_list["#{ingredient}"] += amount
     end
   end
 
