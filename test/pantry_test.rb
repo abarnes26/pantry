@@ -38,4 +38,24 @@ class PantryTest < Minitest::Test
     assert_equal 30, results
   end
 
+  def test_pantry_has_a_shopping_list_that_starts_empty
+    pantry = Pantry.new
+    results = pantry.shopping_list
+
+    assert_equal ({}), results
+  end
+
+  def test_the_shopping_list_can_be_added_to
+    pantry = Pantry.new
+    r = Recipe.new("Cheese Pizza")
+    r.add_ingredient("Flour", 500) # 500 "UNIVERSAL UNITS"
+    assert_equal ["Flour"], r.ingredient_types
+    r.add_ingredient("Cheese", 1500)
+    assert_equal ["Flour", "Cheese"], r.ingredient_types
+    pantry.add_to_shopping_list(r)
+
+    assert_equal ({"Cheese" => 1500, "Flour" => 500}), pantry.shopping_list
+  end
+
+
 end
