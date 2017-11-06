@@ -45,4 +45,15 @@ class Pantry
    cookbook << recipe
   end
 
+  def what_can_i_make
+    cookbook.map do |recipe|
+      if stock => recipe.ingredients
+        recipe.name
+      end
+
+    end
+  end
+
+
+
 end
