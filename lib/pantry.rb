@@ -47,10 +47,8 @@ class Pantry
 
   def what_can_i_make
     cookbook.map do |recipe|
-      if stock => recipe.ingredients
-        recipe.name
-      end
-
+    ingredients = recipe.ingredients.keys
+      if stock.include?(ingredients)
     end
   end
 
