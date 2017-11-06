@@ -47,8 +47,13 @@ class Pantry
 
   def what_can_i_make
     cookbook.map do |recipe|
-     recipe.ingredients.to_a
-   end
+      ingredients = recipe.ingredients.keys
+      ingredients.each do |ingredient|
+      if stock[ingredient] > recipe.ingredients[ingredients]
+        recipe.name
+        end
+      end
+    end
   end
 
 
